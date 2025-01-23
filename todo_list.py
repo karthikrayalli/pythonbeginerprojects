@@ -25,6 +25,31 @@ def display_tasks(tasks):
   for index, task in enumerate(tasks, start=1):
     print(f'{index}. {task}')
 
+
+def add_task(tasks):
+  while True:
+    task = input('Enter a new task: ').strip()
+    if len(task) != 0:
+      tasks.append(task)
+      break
+    else:
+      print('Invalid task!')
+
+
+def remove_task(tasks):
+  display_tasks(tasks)
+
+  while True:
+    try:
+      task_number = int(input('Enter the task number: '))
+      if 1 <= task_number <= len(tasks):
+        tasks.pop(task_number - 1)
+        break
+      else:
+        raise ValueError
+    except ValueError:
+      print('Invalid task number')
+
 def main():
   tasks = []
 
@@ -35,6 +60,10 @@ def main():
 
     if choice == '1':
       display_tasks(tasks)
+    elif choice == '2':
+      add_task(tasks)
+    elif choice == '3':
+      remove_task(tasks)
     else:
       break
   
